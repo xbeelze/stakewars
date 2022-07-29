@@ -1,0 +1,37 @@
+Steps
+We have launched a new validator scoreboard for ShardNet where you can monitor your uptime and metrics of your validator: ShardNet Uptime Leaderboard
+
+Objective 1 - Monitor uptime
+Check your current uptime and manage it to above 70% on ShardNet
+Fix issues with producing chunks. See the troubleshooting guide
+Implement monitoring scripts
+Objective 2 - Open Port 3030 for Diagnostic reporting
+Check to see if PORT 3030 is open
+
+sudo iptables -L | grep 3030
+Open the port if not open
+
+sudo iptables -A INPUT -p tcp --dport 3030 -j ACCEPT
+Save the config for server restarts
+
+You can use one of the 2 solutions:
+
+Using iptables-persistent
+sudo apt install iptables-persistent
+or if already installed
+
+sudo dpkg-reconfigure iptables-persistent
+Using files
+iptables-save > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
+Validate the port is open by visiting
+`http://:3030/status
+
+NOTE: In some cases the port may also need to be opened in your cloud provider / datacenter firewall.
+
+Acceptance criteria:
+Validator reporting above 70%
+Port can be accessed publicly http://<IP Address>:3030/status
+Challenge submission
+Challenge URL: The link to your port 3030 port
+Challenge image: Screenshot of uptime from Leaderboard
